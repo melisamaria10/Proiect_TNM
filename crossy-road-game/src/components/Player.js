@@ -1,6 +1,7 @@
 import * as THREE from "three";
 import { endsUpInValidPosition } from "../utilities/endsUpInValidPosition";
 import { metadata as rows, addRows } from "./Map";
+import { sendPd } from "../pdRelay";
 
 let marmaladeColors = {
   body: 0xffa500,
@@ -162,6 +163,9 @@ export function stepCompleted() {
 
   // Add new rows if the player is running out of them
   if (position.currentRow > rows.length - 10) addRows();
+
+  const currentRow = rows[position.currentRow - 1];
+  if (currentRow?.type === "car" || currentRow?.type === "truck") sendPd("car");
 
   const scoreDOM = document.getElementById("score");
   if (scoreDOM) scoreDOM.innerText = position.currentRow.toString();

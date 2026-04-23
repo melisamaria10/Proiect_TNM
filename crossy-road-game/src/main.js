@@ -10,6 +10,7 @@ import { hitTest, gameOver, resetGameOver } from "./hitTest";
 import { customizeMarmalade } from "./characterCustomizer";
 import "./style.css";
 import "./collectUserInput";
+import { sendPd } from "./pdRelay";
 
 const scene = new THREE.Scene();
 scene.add(player);
@@ -65,6 +66,7 @@ async function boot() {
 
   initializeGame();
   renderer.setAnimationLoop(animate);
+  sendPd("start");
 }
 
 boot();

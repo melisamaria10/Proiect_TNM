@@ -1,17 +1,17 @@
 import { queueMove } from "./components/Player";
+import { sendPd } from "./pdRelay";
+
+const keyMap = {
+  w: "forward",
+  s: "backward",
+  a: "left",
+  d: "right",
+};
 
 window.addEventListener("keydown", (event) => {
-  if (event.key === 'w') {
-    event.preventDefault(); // Avoid scrolling the page
-    queueMove("forward");
-  } else if (event.key === 's') {
-    event.preventDefault(); // Avoid scrolling the page
-    queueMove("backward");
-  } else if (event.key === 'a') {
-    event.preventDefault(); // Avoid scrolling the page
-    queueMove("left");
-  } else if (event.key === 'd') {
-    event.preventDefault(); // Avoid scrolling the page
-    queueMove("right");
-  }
+  const direction = keyMap[event.key];
+  if (!direction) return;
+  event.preventDefault();
+  queueMove(direction);
+  sendPd("hop");
 });
