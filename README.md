@@ -280,3 +280,9 @@ ws.on("message", (data) => {
 3. Pornește jocul: `npm run dev`
 
 Fără relay și Pure Data pornite, jocul funcționează normal, doar **fără sunet**.
+
+### Demo
+
+https://github.com/user-attachments/assets/a80d3275-310e-403a-9e09-2e0d82d02759
+
+
